@@ -1,30 +1,72 @@
-# React + TypeScript + Vite
+# BookingApp
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple booking app made with React, Typescript, Vite, and TailwindCSS.
+Tested with Vitest and Playwright.
 
-Currently, two official plugins are available:
+# Development
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Use the `npm` package manager to install dependencies. Make sure you are using
+the latest stable version of Node.js (v20.11).
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```bash
+npm install
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Testing and linting
+
+You can use the `test` script to run all the tests.
+
+```bash
+npm run test
+```
+
+You can use the `e2e` script to run all available E2E tests with Playwright.
+
+```bash
+npm run e2e
+```
+
+You can lint your code with the `lint` script, only `typecheck` the code with
+the `types` script, or check the formatting with the `format` script.
+
+```bash
+npm run lint
+npm run types
+npm run format
+```
+
+## Structure
+
+Inside the `src/` directory, you will find the following files:
+
+- `app.tsx`: the root component.
+- `index.css`: the CSS entry point for TailwindCSS;
+- `main.tsx`: the main entry-point of the application;
+- `vite-env.d.ts`: typing definition for environment variables;
+
+This project follows a "domain" structuring, i.e., all the directories inside
+the `src/`, apart from the `e2e`, group resources and code related to a
+"domain". Currently, there are two business domains: `bookings` and
+`properties`. There is also the `commons` domain, which is used to group
+resources and code that can be used anywhere in the application.
+
+Inside a domain directory, there are other directories: `components`, `hooks`, `assets`, `mocks`, and `pages`, which are self-explanatory in their contents.
+
+Tests are placed right next to the code they are testing. If there is a
+component file `component.tsx`, its test should be placed in the same directory
+as `component.test.tsx`.
+
+## Mocking
+
+All the data required in network requests can be mocked. We use
+[MSW](https://mswjs.io/) to mock the HTTP requests/responses. You can see
+examples of mocking inside the `[domain]/mock/http-handlers.ts`.
+
+All the client-side network requests are made using the
+[SWR](https://swr.vercel.app/) hooks to efficiently use available resources, prevent duplication of requests, and utilize the cache.
+
+## Routing
+
+We use [React Router v6](https://reactrouter.com/en/main) as the routing
+library. All the routes are defined in `app.tsx`. All the pages are defined in
+the `[domain]/pages` directory.
