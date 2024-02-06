@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import type { Property } from '~/properties/typings';
 import { startOfTomorrow } from 'date-fns';
+import { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { toast } from '~/commons/hooks/use-toast';
 import { usePropertyBookings } from '~/properties/hooks/user-property-bookings';
@@ -13,6 +14,8 @@ type BookingCreateFormProps = {
 
 export function BookingCreateForm(props: BookingCreateFormProps): ReactNode {
   const { property } = props;
+
+  const [key, setKey] = useState(() => Date.now());
 
   const intl = useIntl();
 
@@ -46,6 +49,7 @@ export function BookingCreateForm(props: BookingCreateFormProps): ReactNode {
             defaultMessage: 'Your booking was created',
           }),
         });
+        setKey(Date.now());
         return;
       })
       .catch(() => {
@@ -65,6 +69,7 @@ export function BookingCreateForm(props: BookingCreateFormProps): ReactNode {
 
   return (
     <BookingForm
+      key={key}
       property={property}
       bookings={bookings}
       busy={busy}

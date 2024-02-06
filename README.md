@@ -45,16 +45,18 @@ Inside the `src/` directory, you will find the following files:
 - `vite-env.d.ts`: typing definition for environment variables;
 
 This project follows a "domain" structuring, i.e., all the directories inside
-the `src/`, apart from the `e2e`, group resources and code related to a
-"domain". Currently, there are two business domains: `bookings` and
+the `src/`. Currently, there are two business domains: `bookings` and
 `properties`. There is also the `commons` domain, which is used to group
-resources and code that can be used anywhere in the application.
-
-Inside a domain directory, there are other directories: `components`, `hooks`, `assets`, `mocks`, and `pages`, which are self-explanatory in their contents.
+resources and code that can be used anywhere in the application. Inside a domain
+directory, there are other directories: `components`, `hooks`, `assets`,
+`mocks`, and `pages`, which are self-explanatory in their contents.
 
 Tests are placed right next to the code they are testing. If there is a
 component file `component.tsx`, its test should be placed in the same directory
 as `component.test.tsx`.
+
+All the E2E tests are palced apart from the `src` directory, under its own
+directory named `e2e`.
 
 ### Mocking
 
@@ -63,7 +65,8 @@ All the data required in network requests can be mocked. We use
 examples of mocking inside the `[domain]/mock/http-handlers.ts`.
 
 All the client-side network requests are made using the
-[SWR](https://swr.vercel.app/) hooks to efficiently use available resources, prevent duplication of requests, and utilize the cache.
+[SWR](https://swr.vercel.app/) hooks to efficiently use available resources,
+prevent duplication of requests, and utilize the cache.
 
 ### Routing
 

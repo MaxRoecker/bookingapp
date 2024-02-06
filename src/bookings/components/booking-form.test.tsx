@@ -41,16 +41,14 @@ describe('BookingForm tests', () => {
       />,
     );
 
-    const form = await screen.findByTestId('booking-create-form');
+    const form = await screen.findByTestId('booking-form');
     expect(form).toBeDefined();
 
-    const datepicker = await screen.findByTestId(
-      'booking-create-form-input-date',
-    );
+    const datepicker = await screen.findByTestId('booking-form-input-date');
     expect(datepicker).toBeDefined();
 
     const submit = await screen.findByTestId<HTMLButtonElement>(
-      'booking-create-form-button-submit',
+      'booking-form-button-submit',
     );
     expect(submit).toBeDefined();
     expect(submit.disabled).toBeFalsy();

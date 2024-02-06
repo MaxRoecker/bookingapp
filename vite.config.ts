@@ -16,7 +16,7 @@ export default defineConfig({
     environment: 'jsdom',
     pool: 'forks',
     setupFiles: [resolve(__dirname, 'src/commons/utils/test-setup.ts')],
-    exclude: [...configDefaults.exclude, 'src/e2e/*'],
+    exclude: [...configDefaults.exclude, 'e2e/*'],
     coverage: { reporter: ['text', 'json', 'html'] },
   },
 });

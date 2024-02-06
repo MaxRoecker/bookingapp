@@ -59,9 +59,6 @@ describe('Properties page tests', () => {
     const thumbnail = await screen.findByTestId('property-thumbnail');
     expect(thumbnail).toBeDefined();
 
-    const value = await screen.findByTestId('property-value');
-    expect(value).toBeDefined();
-
     const createForm = await screen.findByTestId('booking-form');
     expect(createForm).toBeDefined();
   });

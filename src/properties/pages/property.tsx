@@ -6,7 +6,6 @@ import { Button } from '~/commons/components/button';
 import { Separator } from '~/commons/components/separator';
 import { PropertyBookingList } from '../components/property-booking-list';
 import { PropertyThumbnail } from '../components/property-thumbnail';
-import { PropertyValue } from '../components/property-value';
 import { useProperty } from '../hooks/user-property';
 
 export function Property(): ReactNode {
@@ -47,10 +46,6 @@ export function Property(): ReactNode {
           {property.name}
         </h2>
         <div className="flex flex-col gap-4 md:gap-6">
-          <p className="leading-none">
-            <PropertyValue property={property} />{' '}
-            <FormattedMessage id="night" defaultMessage="night" />
-          </p>
           <BookingCreateForm property={property} />
           <Separator />
           <h3 className="scroll-m-20 text-lg font-semibold tracking-tight">
