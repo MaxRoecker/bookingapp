@@ -1,9 +1,9 @@
 import type { Booking } from '../typings';
 import type { ReactNode } from 'react';
 import type { Property } from '~/properties/typings';
+import { useMediaQuery } from '@uidotdev/usehooks';
 import { FormattedDateTimeRange, FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
-import { Button } from '~/commons/components/button';
 import {
   Card,
   CardDescription,
@@ -12,6 +12,7 @@ import {
 } from '~/commons/components/card';
 import { PropertyThumbnail } from '~/properties/components/property-thumbnail';
 import { BookingDeleteButton } from './booking-delete-button';
+import { BookingUpdateButton } from './booking-update-button';
 import { BookingValue } from './booking-value';
 import { BookingValueExtended } from './booking-value-extended';
 
@@ -22,6 +23,9 @@ export type BookingCardProps = {
 
 export function BookingCard(props: BookingCardProps): ReactNode {
   const { booking, property } = props;
+
+  const isSmallScreen = useMediaQuery(`(max-width: 767px)`);
+
   return (
     <Card>
       <CardHeader
@@ -50,13 +54,36 @@ export function BookingCard(props: BookingCardProps): ReactNode {
               <BookingValueExtended booking={booking} property={property} />)
             </CardDescription>
           </div>
-          <BookingDeleteButton
-            booking={booking}
-            className="shrink-0 gap-1 sm:hidden"
-            variant="destructive"
-            icon
-          />
-          <div className="hidden shrink-0 flex-col gap-5 sm:flex">
+          <div className="flex shrink-0 flex-row gap-2 md:flex-col">
+            <BookingUpdateButton
+              booking={booking}
+              property={property}
+              className="gap-1"
+              variant="outline"
+              icon={isSmallScreen}
+            >
+              <span className="hidden md:inline">
+                <FormattedMessage
+                  id="Update Booking"
+                  defaultMessage="Update Booking"
+                />
+              </span>
+            </BookingUpdateButton>
+            <BookingDeleteButton
+              booking={booking}
+              className="gap-1"
+              variant="destructive"
+              icon={isSmallScreen}
+            >
+              <span className="hidden md:inline">
+                <FormattedMessage
+                  id="Cancel Booking"
+                  defaultMessage="Cancel Booking"
+                />
+              </span>
+            </BookingDeleteButton>
+          </div>
+          {/* <div className="hidden shrink-0 flex-col gap-5 sm:flex">
             <BookingDeleteButton
               className="gap-1"
               booking={booking}
@@ -67,7 +94,13 @@ export function BookingCard(props: BookingCardProps): ReactNode {
                 defaultMessage="Cancel Booking"
               />
             </BookingDeleteButton>
-            <Button asChild variant="outline">
+            <BookingUpdateButton booking={booking} property={property}>
+              <FormattedMessage
+                id="Cancel Booking"
+                defaultMessage="Cancel Booking"
+              />
+            </BookingUpdateButton>
+            {/* <Button asChild variant="outline">
               <Link to={`/properties/${property.id}`}>
                 <FormattedMessage
                   id="Property details"
@@ -75,7 +108,7 @@ export function BookingCard(props: BookingCardProps): ReactNode {
                 />
               </Link>
             </Button>
-          </div>
+          </div> */}
         </div>
       </CardHeader>
     </Card>

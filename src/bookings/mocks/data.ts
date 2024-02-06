@@ -43,7 +43,7 @@ export const treeNook1: Booking = {
 
 export const bookingById = new Map<Booking['id'], Booking>([
   [oceanHouse1.id, oceanHouse1],
+  [treeNook1.id, treeNook1],
   [peninsulaCottage1.id, peninsulaCottage1],
   [peninsulaCottage2.id, peninsulaCottage2],
-  [treeNook1.id, treeNook1],
 ]);

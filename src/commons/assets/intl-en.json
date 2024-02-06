@@ -3,8 +3,9 @@
   "nights": "nights",
   "Cancel": "Cancel",
   "Close": "Close",
+  "Update Booking": "Update Booking",
   "Cancel Booking": "Cancel Booking",
-  "Book Now!": "Book Now!",
+  "Book Now!": "Book this Date",
   "Pick a date": "Pick a date",
   "Properties": "Properties",
   "Bookings": "Bookings",
@@ -22,7 +23,10 @@
   "createFailureDescription": "An issue arose while attempting to create this reservation. Try again later.",
   "cancelSuccessDescription": "The reservation you made has been canceled",
   "cancelFailureDescription": "An issue arose while attempting to cancel this reservation. Try again later.",
+  "updateSuccessDescription": "The booking you made has been recorded",
+  "updateFailureDescription": "An issue arose while attempting to update this reservation. Try again later.",
   "emptyPropertyBookings": "There are no upcoming bookings for this property in your records.",
   "deleteDialog.title": "Are you absolutely sure?",
-  "deleteDialog.description": "This action cannot be undone. This will permanently delete your booking and free the period to another booking."
+  "deleteDialog.description": "This action cannot be undone. This will permanently delete your booking and free the period to another booking.",
+  "updateDialog.title": "Update Booking"
 }

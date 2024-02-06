@@ -1,5 +1,4 @@
 import type { Booking } from '../typings';
-import type { MouseEvent } from 'react';
 import type { ButtonProps } from '~/commons/components/button';
 import { TrashIcon, UpdateIcon } from '@radix-ui/react-icons';
 import { isAfter } from 'date-fns';
@@ -20,21 +19,20 @@ import { Button } from '~/commons/components/button';
 import { useToast } from '~/commons/hooks/use-toast';
 import { useDeleteBooking } from '../hooks/use-delete-booking';
 
-type PropertyValueProps = ButtonProps & {
+type BookingDeleteButtonProps = ButtonProps & {
   booking: Booking;
 };
 
 export const BookingDeleteButton = forwardRef<
   HTMLButtonElement,
-  PropertyValueProps
+  BookingDeleteButtonProps
 >((props, ref) => {
-  const { booking, onClick, children, ...rest } = props;
+  const { booking, children, ...rest } = props;
   const { trigger, isMutating } = useDeleteBooking(booking.id);
   const intl = useIntl();
   const { toast } = useToast();
 
-  const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
-    if (onClick != null) onClick(event);
+  const handleClick = () => {
     trigger()
       .then(() => {
         toast({

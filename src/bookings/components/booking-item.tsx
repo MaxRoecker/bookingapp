@@ -4,6 +4,7 @@ import type { Property } from '~/properties/typings';
 import { FormattedDateTimeRange } from 'react-intl';
 import { Card, CardDescription, CardHeader } from '~/commons/components/card';
 import { BookingDeleteButton } from './booking-delete-button';
+import { BookingUpdateButton } from './booking-update-button';
 import { BookingValue } from './booking-value';
 import { BookingValueExtended } from './booking-value-extended';
 
@@ -32,12 +33,21 @@ export function BookingItem(props: BookingItemProps): ReactNode {
           <BookingValue booking={booking} property={property} /> (
           <BookingValueExtended booking={booking} property={property} />)
         </CardDescription>
-        <BookingDeleteButton
-          booking={booking}
-          className="shrink-0 gap-1"
-          variant="destructive"
-          icon
-        />
+        <div className="flex shrink-0 flex-row gap-2">
+          <BookingUpdateButton
+            booking={booking}
+            property={property}
+            variant="outline"
+            size="sm"
+            icon
+          />
+          <BookingDeleteButton
+            booking={booking}
+            variant="destructive"
+            size="sm"
+            icon
+          />
+        </div>
       </CardHeader>
     </Card>
   );

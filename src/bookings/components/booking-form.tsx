@@ -20,6 +20,7 @@ import {
   PopoverTrigger,
 } from '~/commons/components/popover';
 import { cn } from '~/commons/utils/classnames';
+import { PropertyValue } from '~/properties/components/property-value';
 import { isDateOverlappingBooking, isRangeOverlappingBooking } from '../utils';
 
 type BookingFormProps = {
@@ -48,7 +49,7 @@ export function BookingForm(props: BookingFormProps): ReactNode {
     dispatchRange(defaultValue),
   );
 
-  const isSmallScreen = useMediaQuery(`(max-width: 768px)`);
+  const isSmallScreen = useMediaQuery(`(max-width: 767px)`);
 
   const handleChange: SelectRangeEventHandler = (nextRange) => {
     setRange(dispatchRange(nextRange));
@@ -128,39 +129,40 @@ export function BookingForm(props: BookingFormProps): ReactNode {
           />
         </PopoverContent>
       </Popover>
-      {nights === 0 ? null : (
-        <output name="total" className="text-sm">
-          <strong>
+      <p className="leading-none">
+        {nights === 0 ? (
+          <span>
+            <PropertyValue property={property} />{' '}
+            <FormattedMessage id="night" defaultMessage="night" />
+          </span>
+        ) : (
+          <output name="total">
+            <strong>
+              <FormattedNumber
+                value={value / 100}
+                style="currency"
+                currency="USD"
+                minimumFractionDigits={2}
+                maximumFractionDigits={2}
+              />
+            </strong>{' '}
+            (
+            <PropertyValue className="font-normal" property={property} />{' '}
+            &times;{' '}
             <FormattedNumber
-              value={value / 100}
-              style="currency"
-              currency="USD"
-              minimumFractionDigits={2}
-              maximumFractionDigits={2}
+              value={nights}
+              style="decimal"
+              maximumFractionDigits={0}
+            />{' '}
+            <FormattedPlural
+              value={nights}
+              one={<FormattedMessage id="night" defaultMessage="night" />}
+              other={<FormattedMessage id="nights" defaultMessage="nights" />}
             />
-          </strong>{' '}
-          (
-          <FormattedNumber
-            value={property.value / 100}
-            style="currency"
-            currency="USD"
-            minimumFractionDigits={2}
-            maximumFractionDigits={2}
-          />{' '}
-          &times;{' '}
-          <FormattedNumber
-            value={nights}
-            style="decimal"
-            maximumFractionDigits={0}
-          />{' '}
-          <FormattedPlural
-            value={nights}
-            one={<FormattedMessage id="night" defaultMessage="night" />}
-            other={<FormattedMessage id="nights" defaultMessage="nights" />}
-          />
-          )
-        </output>
-      )}
+            )
+          </output>
+        )}
+      </p>
 
       <Button
         type="submit"

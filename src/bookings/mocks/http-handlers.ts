@@ -5,9 +5,7 @@ import { propertyById } from '~/properties/mocks/data';
 import { bookingById } from './data';
 
 export const listBookings: HttpResponseResolver = ({ request }) => {
-  const bookings = Array.from(bookingById.values()).sort((a, b) =>
-    a.from.localeCompare(b.from),
-  );
+  const bookings = Array.from(bookingById.values());
 
   const message = 'Ok';
   const url = new URL(request.url);
@@ -95,9 +93,39 @@ export const deleteBooking: HttpResponseResolver = ({ params }) => {
   return HttpResponse.json({ message }, { status: 200 });
 };
 
+export const updateBooking: HttpResponseResolver = async ({
+  params,
+  request,
+}) => {
+  const { id } = params;
+  let message = 'Ok';
+
+  if (typeof id !== 'string') {
+    message = `Booking not found`;
+    return HttpResponse.json({ message }, { status: 404 });
+  }
+
+  const booking = bookingById.get(id);
+
+  if (!booking) {
+    message = `Booking not found`;
+    return HttpResponse.json({ message }, { status: 404 });
+  }
+
+  const json = (await request.json()) as {
+    from: string;
+    to: string;
+  };
+  const updated = { ...booking, ...json };
+  bookingById.set(id, updated);
+
+  return HttpResponse.json({ booking: updated, message }, { status: 200 });
+};
+
 export const handlers = [
   http.get('/api/bookings', listBookings),
   http.post('/api/bookings', createBooking),
   http.get('/api/bookings/:id', retrieveBooking),
   http.delete('/api/bookings/:id', deleteBooking),
+  http.patch('/api/bookings/:id', updateBooking),
 ];
