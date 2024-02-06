@@ -5,9 +5,6 @@ import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { SWRConfig } from 'swr';
 import messages from '~/commons/assets/intl-en.json';
 
-// Wrap any global provider(s) here if needed
-// eslint-disable-next-line react-refresh/only-export-components
-
 export type WrapperOptions = {
   router?: { route: string; path: string };
 };

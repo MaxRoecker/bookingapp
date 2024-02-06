@@ -46,13 +46,13 @@ export function Index(): ReactNode {
         </DropdownMenu>
 
         <nav className="hidden flex-row items-center justify-stretch md:flex">
-          <Button variant="link" asChild>
+          <Button variant="link" data-testid="nav-properties" asChild>
             <Link to="..">
               <FormattedMessage id="Properties" defaultMessage="Properties" />
             </Link>
           </Button>
           <Separator orientation="vertical" />
-          <Button variant="link" asChild>
+          <Button variant="link" data-testid="nav-bookings" asChild>
             <Link to="bookings">
               <FormattedMessage id="Bookings" defaultMessage="Bookings" />
             </Link>
