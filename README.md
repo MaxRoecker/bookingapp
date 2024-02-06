@@ -3,7 +3,7 @@
 A simple booking app made with React, Typescript, Vite, and TailwindCSS.
 Tested with Vitest and Playwright.
 
-# Development
+## Development
 
 Use the `npm` package manager to install dependencies. Make sure you are using
 the latest stable version of Node.js (v20.11).
@@ -12,7 +12,7 @@ the latest stable version of Node.js (v20.11).
 npm install
 ```
 
-## Testing and linting
+### Testing and linting
 
 You can use the `test` script to run all the tests.
 
@@ -35,7 +35,7 @@ npm run types
 npm run format
 ```
 
-## Structure
+### Structure
 
 Inside the `src/` directory, you will find the following files:
 
@@ -56,7 +56,7 @@ Tests are placed right next to the code they are testing. If there is a
 component file `component.tsx`, its test should be placed in the same directory
 as `component.test.tsx`.
 
-## Mocking
+### Mocking
 
 All the data required in network requests can be mocked. We use
 [MSW](https://mswjs.io/) to mock the HTTP requests/responses. You can see
@@ -65,7 +65,7 @@ examples of mocking inside the `[domain]/mock/http-handlers.ts`.
 All the client-side network requests are made using the
 [SWR](https://swr.vercel.app/) hooks to efficiently use available resources, prevent duplication of requests, and utilize the cache.
 
-## Routing
+### Routing
 
 We use [React Router v6](https://reactrouter.com/en/main) as the routing
 library. All the routes are defined in `app.tsx`. All the pages are defined in
