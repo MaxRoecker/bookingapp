@@ -70,3 +70,21 @@ All the client-side network requests are made using the
 We use [React Router v6](https://reactrouter.com/en/main) as the routing
 library. All the routes are defined in `app.tsx`. All the pages are defined in
 the `[domain]/pages` directory.
+
+### Data model
+
+The `property` domain, in the context of this application, models a physical
+real estate property that can receive bookings from users. A property has a
+name, a description, a thumbnail image, a rating, and a price per night.
+
+The `booking` domain models the abstract reservation of a property within a
+time interval. A booking is associated with a property and has a starting date
+and an ending date. The value of the booking is calculated by multiplying the
+number of nights between the starting and ending dates by the price per night
+of the associated property. Bookings are exclusive to properties; the same
+property cannot receive two different overlapping bookings.
+
+Additionally, a property has an integer value called `offsetDays` that is
+required, usually by the property host, for cleaning between bookings. If there
+is a booking within a set of days, a number of `offsetDays` before and after
+are unavailable for booking.
