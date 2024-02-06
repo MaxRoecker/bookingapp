@@ -62,7 +62,7 @@ describe('Properties page tests', () => {
     const value = await screen.findByTestId('property-value');
     expect(value).toBeDefined();
 
-    const createForm = await screen.findByTestId('booking-create-form');
+    const createForm = await screen.findByTestId('booking-form');
     expect(createForm).toBeDefined();
   });
 

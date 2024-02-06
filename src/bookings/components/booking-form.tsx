@@ -82,7 +82,7 @@ export function BookingForm(props: BookingFormProps): ReactNode {
     <form
       className="flex flex-col gap-4 md:gap-6"
       onSubmit={handleSubmit}
-      data-testid="booking-create-form"
+      data-testid="booking-form"
     >
       <Popover>
         <PopoverTrigger asChild>
@@ -90,7 +90,7 @@ export function BookingForm(props: BookingFormProps): ReactNode {
             type="button"
             variant="outline"
             disabled={busy}
-            data-testid="booking-create-form-input-date"
+            data-testid="booking-form-input-date"
             className={cn(
               'w-full pl-3 text-left font-normal',
               range != null && 'text-muted-foreground',
@@ -165,7 +165,7 @@ export function BookingForm(props: BookingFormProps): ReactNode {
       <Button
         type="submit"
         disabled={busy || !isRangeDefined(range)}
-        data-testid="booking-create-form-button-submit"
+        data-testid="booking-form-button-submit"
       >
         <FormattedMessage id="Book Now!" defaultMessage="Book Now!" />
       </Button>
