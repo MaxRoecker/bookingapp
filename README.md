@@ -12,6 +12,12 @@ the latest stable version of Node.js (v20.11).
 npm install
 ```
 
+### Environment
+
+Set up the environment variables under the `.env` or `.env.local` files. The
+file `.env-example` includes the required environment variables that are
+non-sensitive.
+
 ### Testing and linting
 
 You can use the `test` script to run all the tests.

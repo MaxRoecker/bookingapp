@@ -20,11 +20,15 @@ jobs:
       - name: Run type checking
         run: npm run types
       - name: Run test
-        run: npm run test
+        run: npx vitest --run
+        env:
+          VITE_ROOT_URL: ${{ vars.VITE_ROOT_URL }}
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
       - name: Run Playwright tests
         run: npx playwright test
+        env:
+          VITE_ROOT_URL: ${{ vars.VITE_ROOT_URL }}
       - uses: actions/upload-artifact@v3
         if: always()
         with:

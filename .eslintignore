@@ -29,6 +29,7 @@ dist-ssr
 *.sw?
 
 .env.*
+.env
 coverage
 /test-results/
 /playwright-report/
